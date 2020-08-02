@@ -7,6 +7,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
+
+def main_page(request, *args, **kwargs):
+    return render(request, "main-page.html")
+
 @api_view(["GET"])
 def api_over_view(request, *args, **kwargs):
     api_url = {
@@ -21,6 +25,9 @@ def api_over_view(request, *args, **kwargs):
 @api_view(["GET"])
 def task_list(request, *args, **kwargs):
     qs = Task.objects.all()
+    username = request.user.username
+    if username != None:
+        qs = qs.filter(user__username__iexact=username)
     serializer = TaskSerializer(qs, many=True)
     return Response(serializer.data)
 
@@ -33,8 +40,8 @@ def task_detail(request, pk, *args, **kwargs):
 @api_view(["POST"])
 def task_create(request, *args, **kwargs):
     serializer = TaskSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(user=request.user)
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
 

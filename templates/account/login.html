@@ -1,0 +1,25 @@
+<div class="row justify-content-center">
+  <div class="col-3 p-4 border rounded mt-5">
+    <div class="d-flex justify-content-center">
+      <h3>Вход в аккаунт</h3>
+    </div>
+    <form method="POST" action="{% url 'account:login' %}">
+      {% csrf_token %}
+      <div class="input-group mb-2">
+          <div class="input-group-append">
+            <span class="input-group-text"><i class="fa fa-user"></i></span>
+          </div>
+          <input type="text" name="username" class="form-control py-2 border-left-0 border" placeholder="Имя аккаунта">
+      </div>
+      <div class="input-group mb-2">
+        <div class="input-group-append">
+          <span class="input-group-text"><i class="fas fa-key"></i></span>
+        </div>
+        <input type="password" name="password" class="form-control py-2 border-left-0 border" placeholder="Пароль">
+      </div>
+      <div class="d-flex justify-content-center mt-3">
+        <input class="btn btn-secondary" type="submit" value="   Войти   ">
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Main page
+{% endblock title %}
+
+{% block content %}
+    {% include 'components/header.html' %}
+    {% if request.user.is_authenticated %}
+        {% include 'react-components/react.html' %}
+    {% else %}
+        {% include 'account/login.html' %}
+    {% endif %}
+{% endblock content %}

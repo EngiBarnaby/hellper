@@ -1,6 +1,23 @@
 
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 export function backend(method, endpoint, callback, data){
     let jsonData;
+    const csrftoken = getCookie('csrftoken');
     if(data){
         jsonData = JSON.stringify(data)
     }
@@ -8,6 +25,7 @@ export function backend(method, endpoint, callback, data){
     {
         method: method,
         headers: {
+            'X-CSRFToken': csrftoken,
             'Content-Type': 'application/json;charset=utf-8'
           },
           body:jsonData,
@@ -27,7 +45,10 @@ export function backend(method, endpoint, callback, data){
     // }
     )
     .then(
-        (data) => { callback(data) }
+        (data) => {
+         console.log(data)
+         callback(data) 
+        }
     ).catch(error => console.log(error))
 }
 
