@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 import Taskitem from './Taskitem'
 
+
 import { TaskCreate } from './TaskCreate'
 import { taskListApi, taskToggleApi } from '../backend/taskApi'
 
@@ -17,7 +18,6 @@ function Todo() {
             setData(data)
         }
         taskListApi(handleTaskListApi)
-        console.log("Обновление данных");
         setStatusUpdate(false)
       }, [statusUpdate])
 

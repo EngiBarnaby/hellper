@@ -7,6 +7,7 @@ class Task(models.Model):
     done = models.BooleanField(default=False)
     user = models.ForeignKey(User, related_name='tasks', on_delete=models.CASCADE, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
+    update = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['-created']

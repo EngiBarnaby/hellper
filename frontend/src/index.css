@@ -14,19 +14,32 @@ body {
   text-decoration : line-through;
 }
 
-.task-item {
+.todo-item span{
+  word-wrap: break-word;
   font-size: 17px;
+}
 
+.todo-item {
   cursor: pointer;
   background-color: darkgrey;
 }
 
-.task-item:hover {
+.todo-item:hover {
   background-color: rgb(141, 140, 140);
 }
 
 .trash-button:hover {
-  padding: 8px;
-  border-radius: 5px;
-  background-color: crimson;
+  color: crimson;
+}
+
+.weather-info {
+
+  background-color: #80bfff;
+} 
+
+.tools i:hover {
+  color: rgb(141, 140, 140);
+}
+.check-icon {
+  color: forestgreen;
 }

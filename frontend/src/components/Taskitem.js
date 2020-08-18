@@ -10,21 +10,19 @@ function Taskitem({task, toggleTask, changeStattus}){
         classDone.push('done')
     }
 
-
     return (
         <div className={classDone.join(' ')}>
-            <div 
-                onClick={() => toggleTask(task.id, task)}
-                className="border rounded p-3 mb-4 task-item">
-                <div
-                    className="row justify-content-center align-items-center">
-                    <div  
-                        className="col-10">
-                        <span>
-                            {task.text}
-                        </span>
+            <div className="container-fluid">
+                <div className="row border p-2 mb-4 rounded todo-item d-flex align-items-center">
+                    <div className="col-10"
+                        onClick={() => toggleTask(task.id, task)}
+                        >
+                        <span>{task.text}</span>
                     </div>
-                    <div className="ml-auto mr-2">
+                    <div className="col-1 ml-auto">
+                        { classDone[0] ? <i className="check-icon fas fa-check fa-2x"></i> : null}
+                    </div>
+                    <div className="ml-auto mr-3">
                         <TaskButtons 
                             changeStattus={changeStattus}
                             id={task.id}

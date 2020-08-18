@@ -26,7 +26,7 @@ def login_user(request, *args, **kwargs):
                 return redirect("/")
             else:
                 messages.info(request, "Имя или пароль неверны")
-        return render(request, "account/login.html", {})
+        return redirect("/")
 
 def logout_user(request):
     logout(request)

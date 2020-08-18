@@ -39,11 +39,13 @@ def task_detail(request, pk, *args, **kwargs):
 
 @api_view(["POST"])
 def task_create(request, *args, **kwargs):
-    serializer = TaskSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(user=request.user)
-        return Response(serializer.data, status=201)
-    return Response(serializer.errors, status=400)
+    user = request.user
+    if user.is_authenticated:
+        serializer = TaskSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=user)
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
 
 @api_view(['POST'])
 def task_update(request, pk, *args, **kwargs):

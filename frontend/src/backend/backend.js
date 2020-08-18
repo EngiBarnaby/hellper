@@ -46,7 +46,6 @@ export function backend(method, endpoint, callback, data){
     )
     .then(
         (data) => {
-         console.log(data)
          callback(data) 
         }
     ).catch(error => console.log(error))
